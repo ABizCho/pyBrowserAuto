@@ -44,9 +44,7 @@ def change_state():
     time.sleep(0.05)
     hllDll.SendInput(1, ctypes.byref(y), ctypes.sizeof(y))
 
-if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
-    change_state() #한글키 누르고(key_press) , 때기(release)
-###
+##
 
 ###main
 count = 0
@@ -56,16 +54,40 @@ while count < 1:
     timeElapsed = int(time.time() - timePre)
     if timeElapsed >= 3:
         print(timeElapsed, '초')
+
+        ### 크롬열기
         pyautogui.hotkey('win','q') #윈도우창 오픈
-        time.sleep(1)
+        time.sleep(0.5)
+        #한 > 영
+        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+            change_state() #한글키 누르고(key_press) , 때기(release)
         pyautogui.typewrite('chrome',interval=0.1) # 크롬을 타이핑:
         pyautogui.typewrite(['enter']) #엔터 입력
-        time.sleep(1)
+        time.sleep(0.3)
         if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
-            change_state() #한글키 누르고(key_press) , 때기(release) 
-        time.sleep(1)
+            change_state() #한글키 누르고(key_press) , 때기(release)
+        time.sleep(0.3)     
         pyautogui.typewrite('https://nomadcoders.co/react-for-beginners/lobby', interval=0.1) #노마드코더 접속
         pyautogui.typewrite(['enter']) # enter입력
         timePre = time.time()
-        break
+        time.sleep(1)
+
+        ###작업 파일 vscode로 열기
+        pyautogui.hotkey('win','p') #윈도우창 오픈
+        time.sleep(0.5)
+        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+            change_state() #한글키 누르고(key_press) , 때기(release)
+        time.sleep(0.5)      
+        pyautogui.typewrite('cmd',interval=0.5) #cmd를 타이핑:
+        pyautogui.typewrite(['enter']) #엔터입력
+        time.sleep(0.3)
+        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+            change_state() #한글키 누르고(key_press) , 때기(release)    
+        time.sleep(0.3)    
+        pyautogui.typewrite("z:\python")
+        pyautogui.typewrite(["enter"])
+        time.sleep(0.3)
+        pyautogui.typewrite("code VanillaJS_study",interval=0.1)
+        pyautogui.typewrite(["enter"])
     ###
+        break
