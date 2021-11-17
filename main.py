@@ -1,7 +1,7 @@
 import ctypes
 import pyautogui
 import time
-import cv2
+# import cv2
 from ctypes import wintypes
 wintypes.ULONG_PTR = wintypes.WPARAM
 hllDll = ctypes.WinDLL ("User32.dll", use_last_error=True)
@@ -47,47 +47,42 @@ def change_state():
 ##
 
 ###main
-count = 0
+
+### 크롬열기
+pyautogui.hotkey('win','q') #윈도우창 오픈
+time.sleep(0.5)
+#한 > 영
+# if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+#     change_state() #한글키 누르고(key_press) , 때기(release)
+pyautogui.hotkey('hangeul')
+time.sleep(1)
+pyautogui.typewrite('chrome',interval=0.1) # 크롬을 타이핑:
+pyautogui.typewrite(['enter']) #엔터 입력
+time.sleep(1)
+pyautogui.hotkey('hangeul')
+# if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+#     change_state() #한글키 누르고(key_press) , 때기(release)
+time.sleep(1)     
+pyautogui.typewrite('https://nomadcoders.co/react-for-beginners/lobby',interval=0.1) #노마드코더 접속
+pyautogui.typewrite(['enter']) # enter입력
 timePre = time.time()
-timeElapsedPre = 0
-while count < 1:
-    timeElapsed = int(time.time() - timePre)
-    if timeElapsed >= 3:
-        print(timeElapsed, '초')
+time.sleep(1)
+###작업 파일 vscode로 열기
+pyautogui.hotkey('win','q') #윈도우창 오픈chrome
 
-        ### 크롬열기
-        pyautogui.hotkey('win','q') #윈도우창 오픈
-        time.sleep(0.5)
-        #한 > 영
-        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
-            change_state() #한글키 누르고(key_press) , 때기(release)
-        pyautogui.typewrite('chrome',interval=0.1) # 크롬을 타이핑:
-        pyautogui.typewrite(['enter']) #엔터 입력
-        time.sleep(0.3)
-        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
-            change_state() #한글키 누르고(key_press) , 때기(release)
-        time.sleep(0.3)     
-        pyautogui.typewrite('https://nomadcoders.co/react-for-beginners/lobby', interval=0.1) #노마드코더 접속
-        pyautogui.typewrite(['enter']) # enter입력
-        timePre = time.time()
-        time.sleep(1)
-
-        ###작업 파일 vscode로 열기
-        pyautogui.hotkey('win','p') #윈도우창 오픈
-        time.sleep(0.5)
-        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
-            change_state() #한글키 누르고(key_press) , 때기(release)
-        time.sleep(0.5)      
-        pyautogui.typewrite('cmd',interval=0.5) #cmd를 타이핑:
-        pyautogui.typewrite(['enter']) #엔터입력
-        time.sleep(0.3)
-        if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
-            change_state() #한글키 누르고(key_press) , 때기(release)    
-        time.sleep(0.3)    
-        pyautogui.typewrite("z:\python")
-        pyautogui.typewrite(["enter"])
-        time.sleep(0.3)
-        pyautogui.typewrite("code VanillaJS_study",interval=0.1)
-        pyautogui.typewrite(["enter"])
-    ###
-        break
+time.sleep(0.5)
+pyautogui.hotkey('hangeul')
+# if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+#     change_state() #한글키 누르고(key_press) , 때기(release)
+time.sleep(1)      
+pyautogui.typewrite('cmd',interval=0.1) #cmd를 타핑:
+pyautogui.typewrite(['enter']) #엔터입력
+time.sleep(0.8)
+# if get_hanguel_state() == 1: #1 일경우 vk_key : 0x15(한글키)가 활성화
+#     change_state() #한글키 누르고(key_press) , 때기(release)    
+# time.sleep(0.5)    
+pyautogui.typewrite("z:")
+pyautogui.typewrite(["enter"])
+time.sleep(0.5)
+pyautogui.typewrite("code VanillaJS_study",interval=0.1)
+pyautogui.typewrite(["enter"])
